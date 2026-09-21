@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical CV & Engineering Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-card: #111827;
+      --bg-card-alt: #162032;
+      --border-color: #1f293d;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #38bdf8;
+      --accent-blue: #3b82f6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --badge-bg: rgba(56, 189, 248, 0.12);
+      --badge-border: rgba(56, 189, 248, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.5;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      padding: 40px 48px;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue), var(--accent-emerald));
+    }
+
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .name-title h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .name-title .subtitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .header-badges {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--accent-emerald);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .status-badge .dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--accent-emerald);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-emerald);
+    }
+
+    .header-summary {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 900px;
+      line-height: 1.6;
+    }
+
+    /* Layout Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      padding: 40px 48px;
+    }
+
+    /* Section Styles */
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-color);
+    }
+
+    /* Project Cards */
+    .project-card {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .project-header h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: var(--accent-cyan);
+    }
+
+    .project-bullets {
+      list-style-type: none;
+      margin-top: 14px;
+    }
+
+    .project-bullets li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .project-bullets li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-weight: bold;
+    }
+
+    .project-bullets li strong {
+      color: var(--text-primary);
+    }
+
+    /* Sidebar Column */
+    .sidebar-section {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .skill-group {
+      margin-bottom: 18px;
+    }
+
+    .skill-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-pill {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-secondary);
+    }
+
+    .service-card {
+      border-left: 3px solid var(--accent-cyan);
+      padding: 12px 14px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 12px;
+    }
+
+    .service-card h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .service-card p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Footer */
+    .footer {
+      background: #090d16;
+      border-top: 1px solid var(--border-color);
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-right {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Print Optimization */
+    @media print {
+      body {
+        padding: 0;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .container {
+        border: none !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+      }
+      .header {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .project-card, .sidebar-section {
+        background: #f8fafc !important;
+        border: 1px solid #e2e8f0 !important;
+        color: #0f172a !important;
+        page-break-inside: avoid;
+      }
+      .project-header h3, .skill-title, .service-card h4 {
+        color: #0f172a !important;
+      }
+      .project-bullets li {
+        color: #334155 !important;
+      }
+      .project-bullets li strong {
+        color: #0f172a !important;
+      }
+      .tag, .skill-pill {
+        background: #e2e8f0 !important;
+        border-color: #cbd5e1 !important;
+        color: #0f172a !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="title-row">
+        <div class="name-title">
+          <h1>Principal Systems Engineer & Architect</h1>
+          <div class="subtitle">Additive Manufacturing • Core Systems (.NET / Python) • DevOps & Kernel Security</div>
+        </div>
+        <div class="header-badges">
+          <div class="status-badge">
+            <div class="dot"></div>
+            <span>Available for Custom Contracts</span>
+          </div>
+        </div>
+      </div>
+      <p class="header-summary">
+        Battle-tested systems architect with deep, multi-disciplinary engineering expertise across additive manufacturing automation, production C# (.NET 8) daemons, Linux kernel sandboxing (Namespaces/Seccomp/AppArmor), and Android frameworks. Proven track record of architecting mission-critical infrastructure with zero compromise on memory management, defensive error traps, and multi-pass verification standards.
+      </p>
+    </header>
+
+    <!-- Content Grid -->
+    <div class="content-grid">
+      <!-- Main Column -->
+      <main class="main-column">
+        <div class="section-title">Production Portfolios & Flagship Projects</div>
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Enterprise Freelance Automation Engine</h3>
+            <div class="project-tags">
+              <span class="tag">C# .NET 8</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">Systemd</span>
+              <span class="tag">Spectre.Console</span>
+            </div>
+          </div>
+          <ul class="project-bullets">
+            <li><strong>Browser Lock-Evasion:</strong> Implemented transient GUID-tagged read-only SQLite cloning to query active browser session cookies without lock contention.</li>
+            <li><strong>Automated ToS Protection:</strong> Engineered real-time anti-circumvention NLP filters intercepting off-platform triggers to guarantee 100% platform policy compliance.</li>
+            <li><strong>Headless Daemon & Telemetry:</strong> Built a resource-clamped (<35MB RAM) background daemon polling every 30s with desktop alerts and PipeWire audio cues.</li>
+          </ul>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>DevOps Browser Cybersecurity Suite</h3>
+            <div class="project-tags">
+              <span class="tag">C# .NET 8</span>
+              <span class="tag">Node.js (CDP)</span>
+              <span class="tag">Linux LSM</span>
+              <span class="tag">Puppeteer</span>
+            </div>
+          </div>
+          <ul class="project-bullets">
+            <li><strong>Host Sandbox & Kernel Auditing:</strong> Automated validation of SUID root binaries (`4755`), unprivileged user namespaces, and Seccomp BPF syscall confinement.</li>
+            <li><strong>Enterprise CIS Hardening:</strong> Formulated and deployed enterprise policies for Firefox and Chrome enforcing DNS-over-HTTPS, telemetry blocks, and extension allowlists.</li>
+            <li><strong>Dynamic Transport Security:</strong> Orchestrated headless Chromium/Firefox via CDP to score CSP, HSTS preload, X-Content-Type-Options, and clickjacking mitigations.</li>
+          </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Additive Manufacturing & Klipper Firmware Calibration</h3>
+            <div class="project-tags">
+              <span class="tag">PyVista</span>
+              <span class="tag">Klipper / Marlin</span>
+              <span class="tag">OrcaSlicer</span>
+              <span class="tag">MeshFix</span>
+            </div>
+          </div>
+          <ul class="project-bullets">
+            <li><strong>Watertight STL Repair:</strong> Algorithmic mesh repair pipelines fixing non-manifold edges, inverted surface normals, and self-intersecting geometries.</li>
+            <li><strong>Firmware Macro Architecture:</strong> Engineered adaptive bed mesh leveling (`START_PRINT`) and collision-clamped park routines (`PRINT_END`) for Klipper.</li>
+            <li><strong>Slicer Precision Tuning:</strong> Calibrated OrcaSlicer and PrusaSlicer profiles optimizing pressure advance, input shaping, and structural layer bonding.</li>
+          </ul>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Autonomous Commerce & Tokenized Fulfillment</h3>
+            <div class="project-tags">
+              <span class="tag">Python (FastAPI)</span>
+              <span class="tag">Stripe API</span>
+              <span class="tag">SHA-256</span>
+              <span class="tag">SQLite</span>
+            </div>
+          </div>
+          <ul class="project-bullets">
+            <li><strong>Zero-Trust Tokenized Delivery:</strong> Built cryptographically signed single-use download tokens with 48h expiration and strict download quotas.</li>
+            <li><strong>Idempotent Webhook Engine:</strong> Processed payment event streams with automated signature verification and pre-flight SHA-256 package validation.</li>
+          </ul>
+        </div>
+      </main>
+
+      <!-- Sidebar Column -->
+      <aside class="sidebar-column">
+        <!-- Skills Matrix -->
+        <div class="sidebar-section">
+          <div class="section-title">Core Competencies</div>
+
+          <div class="skill-group">
+            <div class="skill-title">Additive & 3D Engineering</div>
+            <div class="skill-pills">
+              <span class="skill-pill">Klipper</span>
+              <span class="skill-pill">OrcaSlicer</span>
+              <span class="skill-pill">STL Repair</span>
+              <span class="skill-pill">Marlin</span>
+              <span class="skill-pill">Input Shaping</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-title">Backend & Core Systems</div>
+            <div class="skill-pills">
+              <span class="skill-pill">C# (.NET 8)</span>
+              <span class="skill-pill">Python 3.13</span>
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">Node.js</span>
+              <span class="skill-pill">SQLite</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-title">DevOps & Security</div>
+            <div class="skill-pills">
+              <span class="skill-pill">Debian / Linux</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">Seccomp BPF</span>
+              <span class="skill-pill">AppArmor</span>
+              <span class="skill-pill">CIS Baselines</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-title">Mobile & Automation</div>
+            <div class="skill-pills">
+              <span class="skill-pill">Android ADB</span>
+              <span class="skill-pill">Zero-Root Debloat</span>
+              <span class="skill-pill">RF Sensing</span>
+              <span class="skill-pill">Systemd</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Available Services -->
+        <div class="sidebar-section">
+          <div class="section-title">Contract Offerings</div>
+
+          <div class="service-card">
+            <h4>3D Mesh Repair & Slicer Tuning</h4>
+            <p>Watertight STL repair, Klipper firmware calibration, and custom OrcaSlicer profiles.</p>
+          </div>
+
+          <div class="service-card">
+            <h4>Custom Software Prototyping</h4>
+            <p>High-performance production utilities in C# (.NET 8) and Python with clean architectures.</p>
+          </div>
+
+          <div class="service-card">
+            <h4>Python Automation & Scraping</h4>
+            <p>Headless browser crawlers, data extraction pipelines, and scheduled sync jobs.</p>
+          </div>
+
+          <div class="service-card">
+            <h4>Android Optimization & Debloat</h4>
+            <p>Safe-list OEM telemetry and bloatware removal preserving Knox and SafetyNet.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-left">
+        <span>✓ VERIFIED TECHNICAL PORTFOLIO</span>
+        <span>•</span>
+        <span>STRICT ON-PLATFORM COMPLIANCE</span>
+      </div>
+      <div class="footer-right">
+        <span>SPEC / BUILD: 2026.09.21 • REVISION 1.0</span>
+      </div>
+    </footer>
+  </div>
+
+</body>
+</html>
